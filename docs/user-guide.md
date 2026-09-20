@@ -57,7 +57,7 @@ repeat an order, so inspect the returned orders before interpreting stability.
 
 ## First Run: Ask Your Agent
 
-Complete the client-specific steps in [setup](codex-local.md). Then try:
+Complete the client-specific steps in [setup](setup.md). Then try:
 
 > Use Kev to classify this message by department and check whether it reports a
 > duplicate charge: “I was charged twice for my shoes.” Show the probabilities,

@@ -1,7 +1,7 @@
 # Kev Agent Kit — local Docker integration for Claude Code, Codex, and Antigravity
 
 This repository preserves Jared Palmer's Kev model and research and adds a local
-Docker service, STDIO MCP adapter, and shared decision skill. See `docs/codex-local.md`.
+Docker service, STDIO MCP adapter, and shared decision skill. See `docs/setup.md`.
 Local defaults: API 8008, playground 8009 (`npm --prefix playground run dev`).
 These local port defaults supersede the historical upstream commands below.
 Integration tests: `uv run --frozen --directory integrations/kev-mcp python -m pytest -q`.

@@ -6,7 +6,7 @@ description: Use the local Kev MCP tools for probability-based classification, r
 # Kev decisions
 
 Call `kev_models` to confirm which checkpoint is loaded. If unavailable, report that
-Kev could not contribute. Setup and troubleshooting are in `docs/codex-local.md`
+Kev could not contribute. Setup and troubleshooting are in `docs/setup.md`
 at this repository's root.
 
 Use `kev_decide` with a concise state and 1–16 independent questions:

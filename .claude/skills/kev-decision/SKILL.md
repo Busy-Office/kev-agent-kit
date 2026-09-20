@@ -7,4 +7,4 @@ Read `.agents/skills/kev-decision/SKILL.md` from the repository root and follow 
 shared workflow. The `kev` MCP server exposes `kev_models`, `kev_decide`, and
 `kev_check_permutations` (Claude Code may prefix tool names with `mcp__kev__`).
 Use those tools to address the user's request. If the server is unavailable, consult
-`docs/codex-local.md`; do not substitute invented results.
+`docs/setup.md`; do not substitute invented results.

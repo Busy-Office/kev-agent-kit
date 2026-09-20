@@ -35,10 +35,10 @@ Open the checkout as a trusted project and restart the client session to load it
 tools. In Claude Code, approve the project MCP server when prompted and use `/mcp`
 to check its connection. No global client configuration changes are required.
 For Antigravity, open this checkout as the workspace and refresh MCP servers;
-see [Antigravity setup](docs/codex-local.md#connect-google-antigravity) for IDE and CLI details.
+see [Antigravity setup](docs/setup.md#connect-google-antigravity) for IDE and CLI details.
 
 Requires Docker Compose, uv, Python 3.12+, and Node 20+. See
-[the local integration guide](docs/codex-local.md) for operation and verification.
+[the setup guide](docs/setup.md) for operation and verification.
 Coding judgments are experimental; probabilities are advisory.
 
 ## Upstream Kev

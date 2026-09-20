@@ -1,4 +1,4 @@
-# Kev Agent Kit
+# Kev Agent Kit Setup and Operations
 
 This is the installation and operations reference. For a plain-language overview,
 start with the [user guide](user-guide.md). For prompts and a real observed result,
