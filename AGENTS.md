@@ -1,4 +1,4 @@
-# Kev Agent Kit — local Docker integration for Claude Code and Codex
+# Kev Agent Kit — local Docker integration for Claude Code, Codex, and Antigravity
 
 This repository preserves Jared Palmer's Kev model and research and adds a local
 Docker service, STDIO MCP adapter, and shared decision skill. See `docs/codex-local.md`.

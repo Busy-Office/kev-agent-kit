@@ -13,13 +13,15 @@ from mcp.client.stdio import stdio_client
 
 async def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--client", choices=["direct", "codex", "claude"], default="direct")
+    parser.add_argument("--client", choices=["direct", "codex", "claude", "antigravity"], default="direct")
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
     if args.client == "codex":
         config = tomllib.loads((root / ".codex/config.toml").read_text())["mcp_servers"]["kev"]
     elif args.client == "claude":
         config = json.loads((root / ".mcp.json").read_text())["mcpServers"]["kev"]
+    elif args.client == "antigravity":
+        config = json.loads((root / ".agents/mcp_config.json").read_text())["mcpServers"]["kev"]
     else:
         config = {"command": sys.executable, "args": [str(Path(__file__).with_name("kev_mcp.py"))]}
     params = StdioServerParameters(command=config["command"], args=config["args"], env=config.get("env"), cwd=str(root))

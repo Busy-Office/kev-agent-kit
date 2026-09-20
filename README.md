@@ -1,6 +1,6 @@
 # Kev Agent Kit
 
-Run Kev locally with Docker and use it from Claude Code or Codex through MCP.
+Run Kev locally with Docker and use it from Claude Code, Codex, or Google Antigravity through MCP.
 
 Maintained by [Busy Office](https://github.com/Busy-Office/kev-agent-kit). Based on
 [Jared Palmer's Kev](https://github.com/jaredpalmer/kev); the original model,
@@ -19,16 +19,19 @@ npm --prefix playground run dev
 
 Open the playground at **http://127.0.0.1:8009**. The Kev API runs at
 **http://127.0.0.1:8008**. First startup downloads the 0.5B checkpoint and base model.
-Both clients use the same three MCP tools and Docker service:
+All three clients use the same three MCP tools and Docker service:
 
 | Client | Project config | Skill invocation |
 | --- | --- | --- |
 | Codex | `.codex/config.toml` | `$kev-decision` |
 | Claude Code | `.mcp.json` | `/kev-decision` |
+| Google Antigravity | `.agents/mcp_config.json` | Ask to use `kev-decision` |
 
 Open the checkout as a trusted project and restart the client session to load its
 tools. In Claude Code, approve the project MCP server when prompted and use `/mcp`
 to check its connection. No global client configuration changes are required.
+For Antigravity, open this checkout as the workspace and refresh MCP servers;
+see [Antigravity setup](docs/codex-local.md#connect-google-antigravity) for IDE and CLI details.
 
 Requires Docker Compose, uv, Python 3.12+, and Node 20+. See
 [the local integration guide](docs/codex-local.md) for operation and verification.
