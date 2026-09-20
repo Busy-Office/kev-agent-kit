@@ -6,8 +6,10 @@ description: Use the local Kev MCP tools for probability-based classification, r
 # Kev decisions
 
 Call `kev_models` to confirm which checkpoint is loaded. If unavailable, report that
-Kev could not contribute. Setup and troubleshooting are in `docs/setup.md`
-at this repository's root.
+Kev could not contribute. The local API normally runs at http://127.0.0.1:8008.
+For setup and troubleshooting, see
+https://github.com/Busy-Office/kev-agent-kit/blob/main/docs/setup.md.
+Do not assume the current working directory contains the Kev checkout.
 
 Use `kev_decide` with a concise state and 1–16 independent questions:
 

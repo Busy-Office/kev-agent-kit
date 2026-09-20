@@ -8,6 +8,7 @@ Antigravity. Start with the user guide; you do not need to understand model trai
 | Understand the product and try my first request | [User guide](user-guide.md) |
 | See realistic workflows and an observed failure | [Practical use cases](use-cases.md) |
 | Install, connect an agent, or troubleshoot | [Setup and operations](setup.md) |
+| Use Kev across projects, update, or uninstall it | [Global installation](global-install.md) |
 | Submit a complete example directly to the API | [Support-triage request](../examples/support-triage.json) |
 | Understand training, architecture, and benchmarks | [Upstream documentation](../README.md#upstream-kev) |
 | Read model limitations | [Original model card](../MODEL_CARD.md) |

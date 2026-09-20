@@ -14,8 +14,9 @@ project rename). First startup needs network access to Hugging Face.
 
 ```sh
 docker compose up -d --build
-docker compose logs -f kev
+docker compose logs --tail 30 kev
 uv sync --frozen --directory integrations/kev-mcp
+uv run --frozen --directory integrations/kev-mcp python global_install.py install
 curl --fail http://127.0.0.1:8008/v1/models
 ```
 
@@ -38,23 +39,21 @@ Production `start` requires `npm --prefix playground run build` first.
 
 ## Connect Codex
 
-Open this repository as a trusted project and restart the Codex session to load
-`.codex/config.toml`. It registers `kev_models`, `kev_decide`, and
-`kev_check_permutations`. The launcher resolves the Git repository root, so it
-works from any directory in a renamed or newly cloned checkout. `sh`, `git`, and
-`uv` must be on the client's PATH.
+Run the [global installer](global-install.md), then restart Codex. It registers
+`kev_models`, `kev_decide`, and `kev_check_permutations` in your user configuration.
+The installed runtime uses an absolute Python path and works outside this checkout.
 
 Try: “Use $kev-decision to classify this message: I was charged twice for my shoes.”
-The repo skill is in `.agents/skills/kev-decision/SKILL.md`.
+The source skill is in `skills/kev-decision/SKILL.md`; the installed Codex copy
+is in `~/.agents/skills/kev-decision/SKILL.md`.
 
 ## Connect Claude Code
 
-Launch `claude` inside this checkout. The repository's `.mcp.json` registers the
-same STDIO adapter; approve the project server when Claude Code prompts. Check
+After global installation, launch `claude` in any project. The installer adds the
+same adapter to the user-scoped `mcpServers` object in `~/.claude.json`. Check
 the connection with `/mcp`, then try `/kev-decision I was charged twice for my shoes`.
-The skill in `.claude/skills/kev-decision/SKILL.md` loads the shared guidance from
-`.agents/skills/kev-decision/SKILL.md`. `CLAUDE.md` imports the repository development
-instructions. No global configuration, credentials, or permission bypass is installed.
+The self-contained skill is installed in `~/.claude/skills/kev-decision/SKILL.md`.
+No credentials or permission bypass are installed. Approve tools when prompted.
 
 ## Verify The Integration
 
@@ -69,6 +68,9 @@ uv run --frozen --directory integrations/kev-mcp python smoke.py
 uv run --frozen --directory integrations/kev-mcp python smoke.py --client codex
 uv run --frozen --directory integrations/kev-mcp python smoke.py --client claude
 uv run --frozen --directory integrations/kev-mcp python smoke.py --client antigravity
+uv run --frozen --directory integrations/kev-mcp python smoke.py --client codex --installed
+uv run --frozen --directory integrations/kev-mcp python smoke.py --client claude --installed
+uv run --frozen --directory integrations/kev-mcp python smoke.py --client antigravity --installed
 uv run --frozen --directory integrations/kev-mcp python -m pytest -q
 ```
 
@@ -80,9 +82,9 @@ content fits Kev's token limits; keep state concise.
 
 ## Connect Google Antigravity
 
-Open this checkout as your Antigravity workspace. The repository includes
-`.agents/mcp_config.json` for the local `kev` server and the shared skill at
-`.agents/skills/kev-decision/SKILL.md`.
+The global installer adds `kev` to `~/.gemini/config/mcp_config.json` and installs
+the skill in `~/.gemini/config/skills/kev-decision/SKILL.md`. Restart Antigravity
+and open any workspace.
 
 In the IDE, open the agent panel's **… → MCP Servers → Manage MCP Servers** and
 refresh the server list. **View raw config** lets you inspect the configuration.
@@ -92,16 +94,14 @@ Approve tool use if prompted. These locations follow the current
 [Antigravity MCP documentation](https://antigravity.google/docs/mcp) and
 [skill documentation](https://antigravity.google/docs/skills).
 
-If your installed version only exposes a global raw configuration, merge the
-`kev` entry from `.agents/mcp_config.json` into its `mcpServers` object, preserving
-other servers. For global configuration, replace the command and arguments with
-`"command": "uv"` and
-`"args": ["run", "--frozen", "--directory", "/absolute/path/to/kev-agent-kit/integrations/kev-mcp", "python", "kev_mcp.py"]`.
-This avoids depending on which workspace the IDE starts the process from. If a
-GUI client cannot find `uv`, use its absolute executable path from `command -v uv`.
+For older versions whose **View raw config** opens a different location, merge
+only the installed `kev` entry into that file, preserving other servers. The
+installer targets the current documented global location; do not assume an older
+IDE reads it. Do not add the same server twice in one client.
 
-The included shell launchers target macOS/Linux (or WSL). For native Windows,
-configure `uv` directly with an absolute directory as above. The API remains
+The optional project templates in `integrations/config` use macOS/Linux shell
+launchers (or WSL). The global runtime uses an absolute Python executable. This
+installer has been verified on macOS; native Windows has not been tested. The API remains
 localhost:8008 and the playground localhost:8009 for every client.
 
 ## Operation

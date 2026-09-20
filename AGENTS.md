@@ -2,6 +2,9 @@
 
 This repository preserves Jared Palmer's Kev model and research and adds a local
 Docker service, STDIO MCP adapter, and shared decision skill. See `docs/setup.md`.
+The source skill lives in `skills/kev-decision`; global installation is explicit
+via `integrations/kev-mcp/global_install.py`. Config templates live in
+`integrations/config` to avoid project/global duplicate discovery.
 Local defaults: API 8008, playground 8009 (`npm --prefix playground run dev`).
 These local port defaults supersede the historical upstream commands below.
 Integration tests: `uv run --frozen --directory integrations/kev-mcp python -m pytest -q`.

@@ -17,6 +17,7 @@ git clone https://github.com/Busy-Office/kev-agent-kit.git
 cd kev-agent-kit
 docker compose up -d --build
 uv sync --frozen --directory integrations/kev-mcp
+uv run --frozen --directory integrations/kev-mcp python global_install.py install
 npm --prefix playground ci
 npm --prefix playground run dev
 ```
@@ -25,17 +26,17 @@ Open the playground at **http://127.0.0.1:8009**. The Kev API runs at
 **http://127.0.0.1:8008**. First startup downloads the 0.5B checkpoint and base model.
 All three clients use the same three MCP tools and Docker service:
 
-| Client | Project config | Skill invocation |
+| Client | Global configuration (default locations) | Skill invocation |
 | --- | --- | --- |
-| Codex | `.codex/config.toml` | `$kev-decision` |
-| Claude Code | `.mcp.json` | `/kev-decision` |
-| Google Antigravity | `.agents/mcp_config.json` | Ask to use `kev-decision` |
+| Codex | `~/.codex/config.toml` | `$kev-decision` |
+| Claude Code | `~/.claude.json` | `/kev-decision` |
+| Google Antigravity | `~/.gemini/config/mcp_config.json` | Ask to use `kev-decision` |
 
-Open the checkout as a trusted project and restart the client session to load its
-tools. In Claude Code, approve the project MCP server when prompted and use `/mcp`
-to check its connection. No global client configuration changes are required.
-For Antigravity, open this checkout as the workspace and refresh MCP servers;
-see [Antigravity setup](docs/setup.md#connect-google-antigravity) for IDE and CLI details.
+The explicit installer makes Kev available across projects. It preserves unrelated
+settings, backs up changes, and copies the adapter into a stable user directory.
+Cloning alone changes no global settings. Restart your clients after installation.
+See [global installation, update, and uninstall](docs/global-install.md) for client
+selection, dry runs, and migration from the earlier project-local setup.
 
 Requires Docker Compose, uv, Python 3.12+, and Node 20+. See
 [the setup guide](docs/setup.md) for operation and verification.
