@@ -1,5 +1,9 @@
 # Kev Agent Kit
 
+This is the installation and operations reference. For a plain-language overview,
+start with the [user guide](user-guide.md). For prompts and a real observed result,
+see [practical use cases](use-cases.md). [All documentation](README.md).
+
 Claude Code, Codex, or Antigravity calls a lightweight STDIO MCP process on the host. It sends typed
 requests to Kev in Docker at `http://127.0.0.1:8008`. Only the container loads the
 model. It has no repository mount and no Docker socket. Weights persist in the

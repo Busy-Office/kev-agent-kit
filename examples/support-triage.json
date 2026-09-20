@@ -1,0 +1,24 @@
+{
+  "state": "I was charged twice for my shoes. Please refund the duplicate charge.",
+  "model": "kev-latest",
+  "questions": {
+    "department": {
+      "type": "choice",
+      "instructions": "Which department should handle this?",
+      "criteria": {
+        "billing": "Charges and payments",
+        "shipping": "Delivery and tracking",
+        "other": "None of these"
+      }
+    },
+    "duplicate": {
+      "type": "noul",
+      "instructions": "Does the message report a duplicate charge?"
+    },
+    "tone": {
+      "type": "score",
+      "instructions": "How angry is the customer?",
+      "criteria": ["calm", "frustrated", "furious"]
+    }
+  }
+}

@@ -8,6 +8,10 @@ research, authorship, and Apache-2.0 license are preserved below.
 
 ## Local Docker + Coding Agents Quick Start
 
+New here? Start with the [user guide](docs/user-guide.md) and
+[practical use cases](docs/use-cases.md). The [documentation index](docs/README.md)
+links the setup, troubleshooting, and model research material.
+
 ```sh
 git clone https://github.com/Busy-Office/kev-agent-kit.git
 cd kev-agent-kit
