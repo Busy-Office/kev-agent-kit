@@ -15,7 +15,12 @@ Use `kev_decide` with a concise state and 1–16 independent questions:
 
 - `noul`: instructions, optional true/false criteria; returns probability of yes.
 - `choice`: instructions and a map from option names to descriptions. Include an
-  unknown/insufficient-evidence option when appropriate. Returns a choice and distribution.
+  unknown/insufficient-evidence option when appropriate, worded as missing evidence
+  ("not enough evidence to tell") rather than as a catch-all ("none of these" /
+  "none of the above"): the checkpoint was trained with a none-option, and in one
+  20-case check on kev-0.5b a catch-all took up to 0.93 of the probability and the
+  cases stopped separating, while the missing-evidence wording took 0.04–0.53 and
+  kept the ranking. Returns a choice and distribution.
 - `score`: instructions and an ordered list of levels. Returns an expected
   zero-based level, not a percentage.
 
