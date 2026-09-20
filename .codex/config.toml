@@ -1,0 +1,8 @@
+[mcp_servers.kev]
+command = "sh"
+args = ["-c", 'exec uv run --frozen --directory "$(git rev-parse --show-toplevel)/integrations/kev-mcp" python kev_mcp.py']
+env = { KEV_BASE_URL = "http://127.0.0.1:8008", KEV_TIMEOUT_SECONDS = "90" }
+startup_timeout_sec = 30
+tool_timeout_sec = 120
+required = false
+enabled_tools = ["kev_models", "kev_decide", "kev_check_permutations"]

@@ -1,0 +1,24 @@
+name: kev-agent-kit
+services:
+  kev:
+    build:
+      context: .
+      dockerfile: Dockerfile.cpu
+    command: ["python", "-m", "kev.serve", "--run", "${KEV_MODEL:-jaredpalmer/kev-0.5b}", "--port", "8008"]
+    ports:
+      - "127.0.0.1:8008:8008"
+    environment:
+      OMP_NUM_THREADS: "${KEV_CPU_THREADS:-4}"
+    volumes:
+      - kev-models:/models
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8008/v1/models', timeout=5)"]
+      interval: 10s
+      timeout: 6s
+      retries: 30
+      start_period: 300s
+    restart: unless-stopped
+volumes:
+  kev-models:
+    # Retain the existing downloaded weights when adopting the new project name.
+    name: kev-local_kev-models

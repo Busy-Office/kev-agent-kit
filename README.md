@@ -1,4 +1,40 @@
-# kev
+# Kev Agent Kit
+
+Run Kev locally with Docker and use it from Claude Code or Codex through MCP.
+
+Maintained by [Busy Office](https://github.com/Busy-Office/kev-agent-kit). Based on
+[Jared Palmer's Kev](https://github.com/jaredpalmer/kev); the original model,
+research, authorship, and Apache-2.0 license are preserved below.
+
+## Local Docker + Coding Agents Quick Start
+
+```sh
+git clone https://github.com/Busy-Office/kev-agent-kit.git
+cd kev-agent-kit
+docker compose up -d --build
+uv sync --frozen --directory integrations/kev-mcp
+npm --prefix playground ci
+npm --prefix playground run dev
+```
+
+Open the playground at **http://127.0.0.1:8009**. The Kev API runs at
+**http://127.0.0.1:8008**. First startup downloads the 0.5B checkpoint and base model.
+Both clients use the same three MCP tools and Docker service:
+
+| Client | Project config | Skill invocation |
+| --- | --- | --- |
+| Codex | `.codex/config.toml` | `$kev-decision` |
+| Claude Code | `.mcp.json` | `/kev-decision` |
+
+Open the checkout as a trusted project and restart the client session to load its
+tools. In Claude Code, approve the project MCP server when prompted and use `/mcp`
+to check its connection. No global client configuration changes are required.
+
+Requires Docker Compose, uv, Python 3.12+, and Node 20+. See
+[the local integration guide](docs/codex-local.md) for operation and verification.
+Coding judgments are experimental; probabilities are advisory.
+
+## Upstream Kev
 
 Jev-inspired decision model. Typed questions in, calibrated probabilities out, one forward pass.
 

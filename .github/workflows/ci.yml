@@ -6,6 +6,13 @@ on:
   pull_request:
 
 jobs:
+  mcp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv run --frozen --directory integrations/kev-mcp python -m pytest -q
+
   python:
     runs-on: ubuntu-latest
     steps:

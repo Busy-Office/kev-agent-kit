@@ -1,4 +1,11 @@
-# kev — prototype of a Jev-style decision model
+# Kev Agent Kit — local Docker integration for Claude Code and Codex
+
+This repository preserves Jared Palmer's Kev model and research and adds a local
+Docker service, STDIO MCP adapter, and shared decision skill. See `docs/codex-local.md`.
+Local defaults: API 8008, playground 8009 (`npm --prefix playground run dev`).
+These local port defaults supersede the historical upstream commands below.
+Integration tests: `uv run --frozen --directory integrations/kev-mcp python -m pytest -q`.
+Live MCP check: `uv run --frozen --directory integrations/kev-mcp python smoke.py`.
 
 Causal LM (Qwen2.5-0.5B + LoRA) run prefill-only with a block-causal mask (shared state prefix,
 isolated question branches) and a pointer readout over option boundary tokens, trained with log loss

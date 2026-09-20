@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 // FastAPI (kev.serve) is proxied under /kev so the browser never deals with CORS or ports.
-const KEV_API = process.env.KEV_API ?? "http://127.0.0.1:8009";
+const KEV_API = process.env.KEV_API ?? "http://127.0.0.1:8008";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
